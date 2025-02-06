@@ -4,8 +4,13 @@
 #include "Framework/BaseLevel.h"
 #include "Framework/Input.h"
 #include "Framework/GameObject.h"
+#include "Player.h"
 #include <string.h>
 #include <iostream>
+#include "Enemy.h"
+#include "Background.h"
+#include "Camera.h"
+#include "Cursor.h"
 
 
 class Level : BaseLevel {
@@ -17,9 +22,31 @@ public:
 	void update(float dt) override;
 	void render() override;
 
+	Player* createPlayer();
+
+	Enemy* createEnemy(sf::Vector2f position, sf::Texture& texture);
+
+	Background* createBackground(sf::Vector2f size);
+
+	Camera* createCamera();
+
+	Cursor* createCursor();
+
 private:
-	// Level objects
-	GameObject testSprite;
-	sf::Texture texture;
+	sf::Texture mushroom_;
+	sf::Texture mushroomTrans_;
+	sf::Texture mario_;
+	sf::Texture cursorTexture_;
+
+	Background* background_;
+
+	Player* player_;
+
+	sf::View* view_;
+
+	Camera* camera_;
+	Cursor* cursor_;
+
+	std::vector<Enemy*> enemies_;
 
 };
